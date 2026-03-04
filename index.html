@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>M&A Integration – Lightning Study Guide</title>
+  <title>M&A Integration: Lightning Study Guide</title>
 
   <!-- Favicon (⚡️ emoji) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%E2%9A%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
@@ -11,31 +11,28 @@
   <!-- Fonts: Headings = Nunito, Body = DM Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      /* Clay tokens */
-      --bg: #F4F1FA;        /* Canvas */
-      --fg: #332F3A;        /* Text primary */
-      --muted: #635F69;     /* Text secondary (don’t go lighter) */
+      --bg:#F4F1FA;
+      --fg:#332F3A;
+      --muted:#635F69;
 
-      --accent: #7C3AED;    /* Violet */
-      --accent2: #DB2777;   /* Hot Pink */
-      --info: #0EA5E9;      /* Sky */
-      --success: #10B981;   /* Emerald */
-      --warning: #F59E0B;   /* Amber */
+      --accent:#7C3AED;
+      --accent2:#DB2777;
+      --info:#0EA5E9;
+      --success:#10B981;
+      --warning:#F59E0B;
 
-      --cardBg: rgba(255,255,255,0.72);
-      --cardBorder: rgba(124,58,237,0.10);
+      --cardBg:rgba(255,255,255,0.72);
+      --cardBorder:rgba(124,58,237,0.10);
 
-      /* Radii (super-rounded) */
-      --r-hero: 56px;
-      --r-card: 32px;
-      --r-mid: 24px;
-      --r-btn: 20px;
+      --r-hero:56px;
+      --r-card:32px;
+      --r-mid:24px;
+      --r-btn:20px;
 
-      /* Shadow stacks (4-layer) */
       --shadow-surface:
         30px 30px 60px #cdc6d9,
         -30px -30px 60px #ffffff,
@@ -70,21 +67,23 @@
         inset 10px 10px 20px #d9d4e3,
         inset -10px -10px 20px #ffffff;
 
-      --ring: 0 0 0 6px rgba(124,58,237,0.18);
-
-      --maxw: 1120px;
+      --ring:0 0 0 6px rgba(124,58,237,0.18);
+      --maxw:1120px;
     }
 
     *{ box-sizing:border-box; }
-    html, body { height: 100%; }
+    html,body{ height:100%; }
     body{
       margin:0;
       color:var(--fg);
-      background: var(--bg);
-      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.55;
-      overflow-x: hidden;
+      background:var(--bg);
+      font-family:"DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.55;
+      overflow-x:hidden;
     }
+
+    /* Make placeholders inherit font (fixes “different font” look) */
+    input, textarea, button { font-family: inherit; }
 
     /* Background blobs */
     .blobs{
@@ -96,21 +95,21 @@
     }
     .blob{
       position:absolute;
-      width:min(60vh, 560px);
-      height:min(60vh, 560px);
+      width:min(60vh,560px);
+      height:min(60vh,560px);
       border-radius:999px;
-      filter: blur(48px);
+      filter:blur(48px);
       opacity:0.12;
-      animation: clay-float 10s ease-in-out infinite;
+      animation:clay-float 10s ease-in-out infinite;
     }
-    .blob.b1{ background: var(--accent); top:-18%; left:-14%; }
-    .blob.b2{ background: var(--accent2); top:10%; right:-18%; animation-duration: 12s; }
-    .blob.b3{ background: var(--info); bottom:-20%; left:12%; animation-duration: 11s; }
-    .blob.b4{ background: var(--success); bottom:-22%; right:10%; animation-duration: 13s; }
+    .blob.b1{ background:var(--accent); top:-18%; left:-14%; }
+    .blob.b2{ background:var(--accent2); top:10%; right:-18%; animation-duration:12s; }
+    .blob.b3{ background:var(--info); bottom:-20%; left:12%; animation-duration:11s; }
+    .blob.b4{ background:var(--success); bottom:-22%; right:10%; animation-duration:13s; }
 
     @keyframes clay-float{
-      0%,100%{ transform: translateY(0) rotate(0deg); }
-      50%{ transform: translateY(-22px) rotate(2deg); }
+      0%,100%{ transform:translateY(0) rotate(0deg); }
+      50%{ transform:translateY(-22px) rotate(2deg); }
     }
     @media (prefers-reduced-motion: reduce){
       .blob{ animation:none; }
@@ -119,573 +118,530 @@
 
     /* Typography */
     h1,h2,h3,.heading{
-      font-family: "Nunito", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      letter-spacing: -0.02em;
-      margin: 0;
+      font-family:"Nunito", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      letter-spacing:-0.02em;
+      margin:0;
     }
-    h1{ font-weight: 900; }
-    h2{ font-weight: 900; font-size: 28px; }
-    @media (min-width: 640px){ h2{ font-size: 34px; } }
-    h3{ font-weight: 800; font-size: 18px; }
+    h1{ font-weight:900; }
+    h2{ font-weight:900; font-size:28px; }
+    @media (min-width:640px){ h2{ font-size:34px; } }
+    h3{ font-weight:800; font-size:18px; }
+    .muted{ color:var(--muted); }
+    .small{ font-size:13px; }
 
-    .muted{ color: var(--muted); }
-    .small{ font-size: 13px; }
-
-    /* Layout */
+    /* Topbar */
     .topbar{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      padding: 14px 0 10px;
-      backdrop-filter: blur(14px);
-      background: rgba(244,241,250,0.72);
+      position:sticky;
+      top:0;
+      z-index:50;
+      padding:14px 0 10px;
+      backdrop-filter:blur(14px);
+      background:rgba(244,241,250,0.72);
     }
     .topbarInner{
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 0 16px;
-      display: grid;
-      gap: 12px;
-      grid-template-columns: 1fr;
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:0 16px;
+      display:grid;
+      gap:12px;
+      grid-template-columns:1fr;
     }
-    @media (min-width: 900px){
+    /* Give the right side (search/actions) more room */
+    @media (min-width:900px){
       .topbarInner{
-        grid-template-columns: 1.2fr 1fr;
-        align-items: center;
+        grid-template-columns: 0.95fr 1.55fr;
+        align-items:center;
+      }
+    }
+    @media (min-width:1120px){
+      .topbarInner{
+        grid-template-columns: 0.9fr 1.7fr;
       }
     }
 
     .brand{
       display:flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      min-width: 0;
     }
     .brandTitle{
-      font-size: 34px;
-      line-height: 1.05;
+      font-size:34px;
+      line-height:1.05;
+      white-space: nowrap;
     }
-    @media (min-width: 640px){
-      .brandTitle{ font-size: 44px; }
-    }
+    @media (min-width:640px){ .brandTitle{ font-size:44px; } }
 
     .tagPill{
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.72);
-      box-shadow: var(--shadow-card);
-      border: 1px solid var(--cardBorder);
-      color: var(--muted);
-      font-weight: 700;
-      white-space: nowrap;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.72);
+      box-shadow:var(--shadow-card);
+      border:1px solid var(--cardBorder);
+      color:var(--muted);
+      font-weight:700;
+      white-space:nowrap;
     }
     .tagDot{
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #A78BFA, #7C3AED);
-      box-shadow: 0 8px 20px rgba(124,58,237,0.25);
+      width:10px;height:10px;border-radius:999px;
+      background:linear-gradient(135deg,#A78BFA,#7C3AED);
+      box-shadow:0 8px 20px rgba(124,58,237,0.25);
     }
 
     .actions{
       display:grid;
-      gap: 10px;
+      gap:10px;
       grid-template-columns: 1fr;
+      min-width: 0;
     }
-    @media (min-width: 640px){
-      .actions{ grid-template-columns: 1fr auto auto; align-items: center; }
+    @media (min-width:640px){
+      /* search grows, then Expand all, then Jump */
+      .actions{ grid-template-columns: 1fr auto auto; align-items:center; }
     }
 
+    /* Layout */
     .layout{
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 18px 16px 46px;
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:18px 16px 46px;
       display:grid;
-      gap: 18px;
-      grid-template-columns: 1fr;
+      gap:18px;
+      grid-template-columns:1fr;
     }
-    @media (min-width: 1020px){
-      .layout{ grid-template-columns: 330px 1fr; gap: 22px; }
-    }
-
-    /* Clay surfaces */
-    .surface{
-      border-radius: var(--r-hero);
-      box-shadow: var(--shadow-surface);
-      background: rgba(255,255,255,0.35);
-      border: 1px solid rgba(255,255,255,0.55);
-      overflow:hidden;
+    @media (min-width:1020px){
+      .layout{ grid-template-columns:330px 1fr; gap:22px; }
     }
 
+    /* Cards */
     .card{
-      position: relative;
-      border-radius: var(--r-card);
-      background: var(--cardBg);
-      border: 1px solid var(--cardBorder);
-      box-shadow: var(--shadow-card);
-      backdrop-filter: blur(18px);
-      padding: 18px;
-      transition: transform 260ms ease, box-shadow 260ms ease;
-      scroll-margin-top: 130px;
+      position:relative;
+      border-radius:var(--r-card);
+      background:var(--cardBg);
+      border:1px solid var(--cardBorder);
+      box-shadow:var(--shadow-card);
+      backdrop-filter:blur(18px);
+      padding:18px;
+      transition:transform 260ms ease, box-shadow 260ms ease;
+      scroll-margin-top:130px;
     }
     .card:hover{
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-card-hover);
+      transform:translateY(-6px);
+      box-shadow:var(--shadow-card-hover);
     }
 
     .sideCard{
-      border-radius: var(--r-card);
-      background: var(--cardBg);
-      border: 1px solid var(--cardBorder);
-      box-shadow: var(--shadow-card);
-      backdrop-filter: blur(18px);
-      padding: 16px;
+      border-radius:var(--r-card);
+      background:var(--cardBg);
+      border:1px solid var(--cardBorder);
+      box-shadow:var(--shadow-card);
+      backdrop-filter:blur(18px);
+      padding:16px;
     }
     .sidebarInner{
-      position: sticky;
-      top: 120px;
+      position:sticky;
+      top:120px;
       display:grid;
-      gap: 14px;
+      gap:14px;
     }
 
     /* Buttons */
     .btn{
       appearance:none;
-      border: 0;
-      border-radius: var(--r-btn);
-      padding: 12px 16px;
-      min-height: 52px;
-      cursor: pointer;
-      font-weight: 800;
-      color: #fff;
-      background: linear-gradient(135deg, #A78BFA, #7C3AED);
-      box-shadow: var(--shadow-button);
-      transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
-      user-select: none;
+      border:0;
+      border-radius:var(--r-btn);
+      padding:12px 16px;
+      min-height:52px;
+      cursor:pointer;
+      font-weight:800;
+      color:#fff;
+      background:linear-gradient(135deg,#A78BFA,#7C3AED);
+      box-shadow:var(--shadow-button);
+      transition:transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+      user-select:none;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap: 10px;
-      letter-spacing: -0.01em;
+      gap:10px;
+      letter-spacing:-0.01em;
+      white-space: nowrap;
     }
-    .btn:hover{ transform: translateY(-4px); box-shadow: var(--shadow-button-hover); }
-    .btn:active{ transform: translateY(0) scale(0.92); box-shadow: var(--shadow-pressed); }
-    .btn:focus-visible{ outline:none; box-shadow: var(--shadow-button-hover), var(--ring); }
+    .btn:hover{ transform:translateY(-4px); box-shadow:var(--shadow-button-hover); }
+    .btn:active{ transform:translateY(0) scale(0.92); box-shadow:var(--shadow-pressed); }
+    .btn:focus-visible{ outline:none; box-shadow:var(--shadow-button-hover), var(--ring); }
 
     .btn.secondary{
-      color: var(--fg);
-      background: rgba(255,255,255,0.80);
-      box-shadow: var(--shadow-button);
+      color:var(--fg);
+      background:rgba(255,255,255,0.80);
+      box-shadow:var(--shadow-button);
     }
-    .btn.secondary:hover{ filter: saturate(1.05); }
-    .btn.ghost{
-      color: var(--fg);
-      background: transparent;
-      box-shadow: none;
-      border: 1px solid rgba(124,58,237,0.18);
-    }
-    .btn.ghost:hover{ background: rgba(124,58,237,0.08); transform: translateY(-2px); box-shadow: none; }
-    .btn.ghost:active{ transform: scale(0.96); box-shadow: none; }
+    .btn.secondary:hover{ filter:saturate(1.05); }
 
     /* Inputs (recessed) */
     .input{
-      width: 100%;
-      border: 0;
-      border-radius: 24px;
-      padding: 14px 16px;
-      min-height: 56px;
-      font-size: 16px;
-      color: var(--fg);
-      background: #EFEBF5;
-      box-shadow: var(--shadow-pressed);
-      transition: box-shadow 180ms ease, background 180ms ease, transform 180ms ease;
+      width:100%;
+      border:0;
+      border-radius:24px;
+      padding:14px 16px;
+      min-height:56px;
+      font-size:16px;
+      font-weight:600;
+      color:var(--fg);
+      background:#EFEBF5;
+      box-shadow:var(--shadow-pressed);
+      transition:box-shadow 180ms ease, background 180ms ease, transform 180ms ease;
+      min-width: 0;
+      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; /* force match */
     }
-    .input::placeholder{ color: var(--muted); }
+    .input::placeholder{
+      color:var(--muted);
+      font-weight:500;
+      font-family: inherit;
+    }
     .input:focus{
-      outline: none;
-      background: #fff;
-      box-shadow: var(--shadow-card), var(--ring);
-      transform: translateY(-1px);
+      outline:none;
+      background:#fff;
+      box-shadow:var(--shadow-card), var(--ring);
+      transform:translateY(-1px);
     }
 
-    .pillRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
+    /* Pills */
+    .pillRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
     .pill{
-      border: 0;
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 10px 12px;
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(124,58,237,0.14);
-      color: var(--fg);
-      font-weight: 800;
-      box-shadow: var(--shadow-card);
-      transition: transform 180ms ease, box-shadow 180ms ease;
-      min-height: 44px;
+      border:0;
+      cursor:pointer;
+      border-radius:999px;
+      padding:10px 12px;
+      background:rgba(255,255,255,0.75);
+      border:1px solid rgba(124,58,237,0.14);
+      color:var(--fg);
+      font-weight:800;
+      box-shadow:var(--shadow-card);
+      transition:transform 180ms ease, box-shadow 180ms ease;
+      min-height:44px;
     }
-    .pill:hover{ transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
-    .pill:active{ transform: scale(0.92); box-shadow: var(--shadow-pressed); }
+    .pill:hover{ transform:translateY(-4px); box-shadow:var(--shadow-card-hover); }
+    .pill:active{ transform:scale(0.92); box-shadow:var(--shadow-pressed); }
 
-    /* TOC links */
+    /* TOC */
     .toc{
-      display:grid;
-      gap: 10px;
-      margin-top: 10px;
-      max-height: 55vh;
-      overflow:auto;
-      padding-right: 4px;
+      display:grid; gap:10px; margin-top:10px;
+      max-height:55vh; overflow:auto; padding-right:4px;
     }
     .toc a{
       display:block;
-      border-radius: 999px;
-      padding: 12px 14px;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(124,58,237,0.14);
-      box-shadow: var(--shadow-card);
-      font-weight: 800;
-      color: var(--fg);
-      transition: transform 180ms ease, box-shadow 180ms ease;
+      border-radius:999px;
+      padding:12px 14px;
+      background:rgba(255,255,255,0.72);
+      border:1px solid rgba(124,58,237,0.14);
+      box-shadow:var(--shadow-card);
+      font-weight:800;
+      color:var(--fg);
+      transition:transform 180ms ease, box-shadow 180ms ease;
     }
-    .toc a:hover{ transform: translateY(-4px); box-shadow: var(--shadow-card-hover); text-decoration:none; }
+    .toc a:hover{ transform:translateY(-4px); box-shadow:var(--shadow-card-hover); text-decoration:none; }
     .toc a.active{
-      background: rgba(124,58,237,0.10);
-      border-color: rgba(124,58,237,0.22);
+      background:rgba(124,58,237,0.10);
+      border-color:rgba(124,58,237,0.22);
     }
 
-    /* Small UI */
     .kbd{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(124,58,237,0.14);
-      box-shadow: var(--shadow-card);
-      font-weight: 800;
-      font-size: 12px;
-      color: var(--fg);
-      white-space: nowrap;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.75);
+      border:1px solid rgba(124,58,237,0.14);
+      box-shadow:var(--shadow-card);
+      font-weight:800;
+      font-size:12px;
+      color:var(--fg);
+      white-space:nowrap;
     }
 
-    /* Details accordion */
+    /* Details */
     details{
-      border-radius: var(--r-mid);
-      background: rgba(255,255,255,0.62);
-      border: 1px solid rgba(124,58,237,0.12);
-      box-shadow: var(--shadow-card);
-      padding: 12px 14px;
-      margin: 12px 0;
+      border-radius:var(--r-mid);
+      background:rgba(255,255,255,0.62);
+      border:1px solid rgba(124,58,237,0.12);
+      box-shadow:var(--shadow-card);
+      padding:12px 14px;
+      margin:12px 0;
     }
     summary{
       cursor:pointer;
-      font-weight: 800;
-      color: var(--fg);
-      list-style: none;
+      font-weight:800;
+      color:var(--fg);
+      list-style:none;
     }
     summary::-webkit-details-marker{ display:none; }
     summary::before{
       content:"▸";
       display:inline-block;
-      margin-right: 10px;
-      color: var(--accent);
-      transition: transform 180ms ease;
+      margin-right:10px;
+      color:var(--accent);
+      transition:transform 180ms ease;
     }
-    details[open] summary::before{ transform: rotate(90deg); }
-
-    /* Copy button */
-    .copyWrap{ position: relative; padding-top: 8px; }
-    .copyBtn{
-      position:absolute;
-      top: 0;
-      right: 0;
-      border: 0;
-      border-radius: 999px;
-      padding: 10px 12px;
-      min-height: 44px;
-      cursor:pointer;
-      font-weight: 800;
-      color: #fff;
-      background: linear-gradient(135deg, #F472B6, #DB2777);
-      box-shadow: var(--shadow-button);
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-    .copyBtn:hover{ transform: translateY(-3px); box-shadow: var(--shadow-button-hover); }
-    .copyBtn:active{ transform: scale(0.92); box-shadow: var(--shadow-pressed); }
+    details[open] summary::before{ transform:rotate(90deg); }
 
     mark.hl{
-      background: rgba(245,158,11,0.22);
-      padding: 0 3px;
-      border-radius: 8px;
+      background:rgba(245,158,11,0.22);
+      padding:0 3px;
+      border-radius:8px;
     }
 
     /* Q Bank */
     .qControls{
       display:grid;
-      gap: 10px;
-      margin: 12px 0 10px;
+      gap:10px;
+      margin:12px 0 10px;
     }
-    @media (min-width: 860px){
-      .qControls{ grid-template-columns: 1fr auto auto; align-items:center; }
+    @media (min-width:860px){
+      .qControls{ grid-template-columns: 1fr auto; align-items:center; }
     }
-    .qList{ display:grid; gap: 14px; margin-top: 12px; }
+
+    .qList{ display:grid; gap:14px; margin-top:12px; }
     .qItem{
-      border-radius: var(--r-card);
-      background: rgba(255,255,255,0.70);
-      border: 1px solid rgba(124,58,237,0.12);
-      box-shadow: var(--shadow-card);
-      padding: 16px;
-      transition: transform 220ms ease, box-shadow 220ms ease;
+      border-radius:var(--r-card);
+      background:rgba(255,255,255,0.70);
+      border:1px solid rgba(124,58,237,0.12);
+      box-shadow:var(--shadow-card);
+      padding:16px;
+      transition:transform 220ms ease, box-shadow 220ms ease;
     }
-    .qItem:hover{ transform: translateY(-6px); box-shadow: var(--shadow-card-hover); }
+    .qItem:hover{ transform:translateY(-6px); box-shadow:var(--shadow-card-hover); }
 
     .qTop{
-      display:flex;
-      gap: 12px;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
+      display:flex; gap:12px;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex-wrap:wrap;
     }
-    .qTitle{ font-weight: 900; color: var(--fg); }
-    .chipRow{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .qTitle{ font-weight:900; color:var(--fg); }
+    .chipRow{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
     .chip{
       display:inline-flex;
       align-items:center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(124,58,237,0.10);
-      border: 1px solid rgba(124,58,237,0.16);
-      color: var(--fg);
-      font-weight: 800;
-      font-size: 12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(124,58,237,0.10);
+      border:1px solid rgba(124,58,237,0.16);
+      color:var(--fg);
+      font-weight:800;
+      font-size:12px;
     }
 
     .qBtns{
       display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
     .qBtnMini{
-      border: 0;
-      border-radius: 999px;
-      padding: 10px 12px;
-      min-height: 44px;
+      border:0;
+      border-radius:999px;
+      padding:10px 12px;
+      min-height:44px;
       cursor:pointer;
-      font-weight: 900;
-      color: var(--fg);
-      background: rgba(255,255,255,0.80);
-      border: 1px solid rgba(124,58,237,0.14);
-      box-shadow: var(--shadow-button);
-      transition: transform 180ms ease, box-shadow 180ms ease;
+      font-weight:900;
+      color:var(--fg);
+      background:rgba(255,255,255,0.80);
+      border:1px solid rgba(124,58,237,0.14);
+      box-shadow:var(--shadow-button);
+      transition:transform 180ms ease, box-shadow 180ms ease;
       user-select:none;
+      white-space: nowrap;
     }
-    .qBtnMini:hover{ transform: translateY(-3px); box-shadow: var(--shadow-button-hover); }
-    .qBtnMini:active{ transform: scale(0.92); box-shadow: var(--shadow-pressed); }
-    .qBtnMini.primary{
-      color:#fff;
-      background: linear-gradient(135deg, #A78BFA, #7C3AED);
-      border: 0;
-    }
+    .qBtnMini:hover{ transform:translateY(-3px); box-shadow:var(--shadow-button-hover); }
+    .qBtnMini:active{ transform:scale(0.92); box-shadow:var(--shadow-pressed); }
     .qBtnMini.modeActive{
-      background: rgba(124,58,237,0.12);
-      border-color: rgba(124,58,237,0.22);
+      background:rgba(124,58,237,0.12);
+      border-color:rgba(124,58,237,0.22);
     }
 
     .qSnippet{
-      margin-top: 12px;
-      border-top: 1px solid rgba(124,58,237,0.12);
-      padding-top: 12px;
+      margin-top:12px;
+      border-top:1px solid rgba(124,58,237,0.12);
+      padding-top:12px;
     }
 
     .anec{
-      margin-top: 12px;
-      border-radius: var(--r-mid);
-      background: rgba(14,165,233,0.08);
-      border: 1px solid rgba(14,165,233,0.18);
-      box-shadow: var(--shadow-card);
-      padding: 12px 14px;
+      margin-top:12px;
+      border-radius:var(--r-mid);
+      background:rgba(14,165,233,0.08);
+      border:1px solid rgba(14,165,233,0.18);
+      box-shadow:var(--shadow-card);
+      padding:12px 14px;
     }
-    .anecHead{
-      display:flex;
-      gap: 10px;
-      align-items: baseline;
-      flex-wrap: wrap;
-    }
-    .anecTitle{ font-weight: 900; }
-    .anecNote{ font-weight: 700; color: var(--muted); }
+    .anecHead{ display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; }
+    .anecTitle{ font-weight:900; }
+    .anecNote{ font-weight:700; color:var(--muted); }
 
     /* Modals */
     .modal{
-      position: fixed;
-      inset: 0;
-      background: rgba(51,47,58,0.25);
+      position:fixed;
+      inset:0;
+      background:rgba(51,47,58,0.25);
       display:none;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 74px 16px 16px;
-      z-index: 200;
-      backdrop-filter: blur(10px);
+      align-items:flex-start;
+      justify-content:center;
+      padding:74px 16px 16px;
+      z-index:200;
+      backdrop-filter:blur(10px);
     }
     .modal[aria-hidden="false"]{ display:flex; }
-
     .modalCard{
-      width: min(860px, 100%);
-      border-radius: var(--r-hero);
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(124,58,237,0.14);
-      box-shadow: var(--shadow-surface);
-      backdrop-filter: blur(18px);
-      padding: 18px;
+      width:min(860px,100%);
+      border-radius:var(--r-hero);
+      background:rgba(255,255,255,0.78);
+      border:1px solid rgba(124,58,237,0.14);
+      box-shadow:var(--shadow-surface);
+      backdrop-filter:blur(18px);
+      padding:18px;
       overflow:hidden;
     }
     .modalHeader{
-      display:flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      display:flex; gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
     }
     .modalList{
-      margin-top: 12px;
+      margin-top:12px;
       display:grid;
-      gap: 10px;
-      max-height: 55vh;
+      gap:10px;
+      max-height:55vh;
       overflow:auto;
-      padding-right: 4px;
+      padding-right:4px;
     }
     .cmdItem{
-      border-radius: 999px;
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(124,58,237,0.14);
-      box-shadow: var(--shadow-card);
-      padding: 12px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.78);
+      border:1px solid rgba(124,58,237,0.14);
+      box-shadow:var(--shadow-card);
+      padding:12px 14px;
       cursor:pointer;
-      font-weight: 900;
+      font-weight:900;
       display:flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      transition: transform 180ms ease, box-shadow 180ms ease;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      transition:transform 180ms ease, box-shadow 180ms ease;
     }
-    .cmdItem:hover{ transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+    .cmdItem:hover{ transform:translateY(-4px); box-shadow:var(--shadow-card-hover); }
     .cmdKind{
-      font-size: 12px;
-      font-weight: 900;
-      color: var(--fg);
-      background: rgba(124,58,237,0.10);
-      border: 1px solid rgba(124,58,237,0.16);
-      padding: 6px 10px;
-      border-radius: 999px;
-      white-space: nowrap;
+      font-size:12px;
+      font-weight:900;
+      color:var(--fg);
+      background:rgba(124,58,237,0.10);
+      border:1px solid rgba(124,58,237,0.16);
+      padding:6px 10px;
+      border-radius:999px;
+      white-space:nowrap;
     }
 
-    /* Help button (floating) */
+    /* Floating Help button */
     .helpFab{
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 120;
-      width: 56px;
-      height: 56px;
-      border-radius: 999px;
-      border: 0;
-      cursor: pointer;
-      color: #fff;
-      font-weight: 900;
-      background: linear-gradient(135deg, #F472B6, #DB2777);
-      box-shadow: var(--shadow-button);
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:120;
+      width:56px;
+      height:56px;
+      border-radius:999px;
+      border:0;
+      cursor:pointer;
+      color:#fff;
+      font-weight:900;
+      background:linear-gradient(135deg,#F472B6,#DB2777);
+      box-shadow:var(--shadow-button);
       display:flex;
       align-items:center;
       justify-content:center;
-      transition: transform 180ms ease, box-shadow 180ms ease;
+      transition:transform 180ms ease, box-shadow 180ms ease;
     }
-    .helpFab:hover{ transform: translateY(-4px); box-shadow: var(--shadow-button-hover); }
-    .helpFab:active{ transform: scale(0.92); box-shadow: var(--shadow-pressed); }
-    .helpFab:focus-visible{ outline:none; box-shadow: var(--shadow-button-hover), var(--ring); }
+    .helpFab:hover{ transform:translateY(-4px); box-shadow:var(--shadow-button-hover); }
+    .helpFab:active{ transform:scale(0.92); box-shadow:var(--shadow-pressed); }
+    .helpFab:focus-visible{ outline:none; box-shadow:var(--shadow-button-hover), var(--ring); }
 
     /* Lock */
     .lock{
-      position: fixed;
-      inset: 0;
+      position:fixed;
+      inset:0;
       display:grid;
       place-items:center;
-      padding: 24px;
-      z-index: 9999;
-      background: rgba(244,241,250,0.82);
-      backdrop-filter: blur(14px);
+      padding:24px;
+      z-index:9999;
+      background:rgba(244,241,250,0.82);
+      backdrop-filter:blur(14px);
     }
     .lockCard{
-      width: min(620px, 100%);
-      border-radius: var(--r-hero);
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(124,58,237,0.14);
-      box-shadow: var(--shadow-surface);
-      backdrop-filter: blur(18px);
-      padding: 18px;
+      width:min(620px,100%);
+      border-radius:var(--r-hero);
+      background:rgba(255,255,255,0.78);
+      border:1px solid rgba(124,58,237,0.14);
+      box-shadow:var(--shadow-surface);
+      backdrop-filter:blur(18px);
+      padding:18px;
       overflow:hidden;
     }
     .lockTitle{
-      font-size: 40px;
-      line-height: 1.05;
-      margin-bottom: 6px;
+      font-size:40px;
+      line-height:1.05;
+      margin-bottom:6px;
     }
-    .lockSub{ margin: 0 0 12px; color: var(--muted); font-weight: 700; }
+    .lockSub{ margin:0 0 12px; color:var(--muted); font-weight:700; }
 
-    /* Footer */
     footer{
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 0 16px 50px;
-      color: var(--muted);
-      font-weight: 700;
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:0 16px 50px;
+      color:var(--muted);
+      font-weight:700;
     }
 
-    /* Simple utilities */
-    .row{ display:flex; gap: 10px; align-items:center; flex-wrap: wrap; }
-    .grid2{ display:grid; gap: 12px; }
-    @media (min-width: 860px){ .grid2{ grid-template-columns: 1fr 1fr; } }
+    .row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .grid2{ display:grid; gap:12px; }
+    @media (min-width:860px){ .grid2{ grid-template-columns:1fr 1fr; } }
 
-    /* Flash highlight on jump */
-    .flash{ animation: flashy 800ms ease-out 1; }
+    .flash{ animation:flashy 800ms ease-out 1; }
     @keyframes flashy{
-      0%{ transform: translateY(0) scale(1); }
-      25%{ transform: translateY(-6px) scale(1.01); box-shadow: var(--shadow-card-hover); }
-      100%{ transform: translateY(0) scale(1); }
+      0%{ transform:translateY(0) scale(1); }
+      25%{ transform:translateY(-6px) scale(1.01); box-shadow:var(--shadow-card-hover); }
+      100%{ transform:translateY(0) scale(1); }
     }
 
-    /* Textareas for company notes */
     .textarea{
-      width: 100%;
-      min-height: 140px;
-      resize: vertical;
-      border: 0;
-      border-radius: 24px;
-      padding: 14px 16px;
-      font-size: 16px;
-      color: var(--fg);
-      background: #EFEBF5;
-      box-shadow: var(--shadow-pressed);
-      transition: box-shadow 180ms ease, background 180ms ease, transform 180ms ease;
+      width:100%;
+      min-height:140px;
+      resize:vertical;
+      border:0;
+      border-radius:24px;
+      padding:14px 16px;
+      font-size:16px;
+      font-weight:600;
+      color:var(--fg);
+      background:#EFEBF5;
+      box-shadow:var(--shadow-pressed);
+      transition:box-shadow 180ms ease, background 180ms ease, transform 180ms ease;
+      font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
+    .textarea::placeholder{ color:var(--muted); font-weight:500; }
     .textarea:focus{
-      outline: none;
-      background: #fff;
-      box-shadow: var(--shadow-card), var(--ring);
-      transform: translateY(-1px);
+      outline:none;
+      background:#fff;
+      box-shadow:var(--shadow-card), var(--ring);
+      transform:translateY(-1px);
     }
     .label{
-      font-weight: 900;
-      color: var(--fg);
-      margin: 10px 0 8px;
-      font-family: "Nunito", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight:900;
+      color:var(--fg);
+      margin:10px 0 8px;
+      font-family:"Nunito", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
   </style>
 </head>
@@ -732,12 +688,9 @@
         </div>
 
         <div class="actions">
-          <input class="input" id="search" placeholder="Search everything… (press /)   •   Cmd/Ctrl+K = jump   •   ? = help" />
+          <input class="input" id="search" />
           <button class="btn secondary" id="expandAllBtn" title="Expand/collapse all">Expand all</button>
-          <div class="row" style="justify-content:flex-end;">
-            <button class="btn ghost" id="helpBtn" title="Help (? key)">Help</button>
-            <button class="btn" id="cmdBtn" title="Command palette (Cmd/Ctrl+K)">Jump</button>
-          </div>
+          <button class="btn" id="cmdBtn" title="Command palette (Cmd/Ctrl+K)">Jump</button>
         </div>
       </div>
     </header>
@@ -761,7 +714,6 @@
       </aside>
 
       <main id="content">
-        <!-- START HERE -->
         <section class="card" id="start" data-title="Start here" data-tags="talk 50% recruiter interview rules slice anecdote concise">
           <h2>How to use this in real time</h2>
 
@@ -794,7 +746,6 @@
               <li><strong>Executing through ambiguity:</strong> bring order to chaos fast, low spend</li>
               <li><strong>Teachable:</strong> low-ego Swiss Army knife; learn + teach tools quickly</li>
             </ul>
-            <p class="small muted">Positioning line: “Anyone can talk strategy, but not everyone can walk the talk.”</p>
           </details>
 
           <details>
@@ -805,126 +756,93 @@
               <li><strong>1% better every day</strong> — compound learning</li>
             </ul>
           </details>
-
-          <p class="small muted">Tip: jump to <a href="#qbank"><strong>Q → best answer</strong></a>, pick <span class="kbd">30s</span> or <span class="kbd">60s</span>, then <strong>Copy</strong>.</p>
         </section>
 
-        <!-- Q BANK -->
-        <section class="card" id="qbank" data-title="Q → best answer" data-tags="question bank 30 second 60 second answers copy jump anecdote slice">
-          <h2>Question → best snippet (copy + jump)</h2>
+        <section class="card" id="qbank" data-title="Q → best answer" data-tags="question bank 30 second 60 second answers jump anecdote slice">
+          <h2>Question → best snippet</h2>
 
           <div class="qControls">
-            <input class="input" id="qSearch" placeholder="Filter questions… e.g., prioritize, CRM, dashboard, 90-day, conflict" />
+            <input class="input" id="qSearch" placeholder="Filter questions… e.g., prioritize, CRM, 90-day" />
             <button class="btn secondary" id="qShowAllBtn" title="Clear filter">Clear</button>
-            <button class="btn" id="qCopyFirstBtn" title="Copy the first visible answer (uses that card’s selected 30s/60s)">Copy first</button>
           </div>
 
           <div class="small muted">
-            Each card: <span class="kbd">30s</span>/<span class="kbd">60s</span> toggle • <span class="kbd">Copy</span> • <span class="kbd">Jump</span> • suggested anecdote slice
+            Use <span class="kbd">30s</span>/<span class="kbd">60s</span> to adjust how long you talk. Use <strong>Jump</strong> to see deeper notes.
           </div>
 
           <div class="qList" id="qList"></div>
         </section>
 
-        <!-- ANSWER TEMPLATES -->
-        <section class="card" id="answer-template" data-title="Answer templates" data-tags="executive presence answer structure framework strategy 80% info">
+        <section class="card" id="answer-template" data-title="Answer templates" data-tags="answer structure framework strategy 80% info">
           <h2>Answer templates</h2>
 
-          <div class="copyWrap">
-            <button class="copyBtn" data-copy="#tmpl1">Copy</button>
-            <div id="tmpl1">
-              <ol class="muted">
-                <li><strong>Restate</strong> the problem in one sentence.</li>
-                <li><strong>Clarify</strong>: “I’d rather act with ~80% than wait for 100% and miss timing.”</li>
-                <li><strong>Apply</strong> a strategy (0→100 / QA / Buy-in / Prioritize).</li>
-                <li><strong>Execute</strong>: owners, cadence, artifacts, risk log, milestones.</li>
-                <li><strong>Optional</strong>: a relevant anecdote slice + measurable result.</li>
-              </ol>
-            </div>
-          </div>
+          <details open>
+            <summary>Default structure</summary>
+            <ol class="muted">
+              <li><strong>Restate</strong> the problem in one sentence.</li>
+              <li><strong>Clarify</strong>: “I’d rather act with ~80% than wait for 100% and miss timing.”</li>
+              <li><strong>Apply</strong> a strategy (0→100 / QA / Buy-in / Prioritize).</li>
+              <li><strong>Execute</strong>: owners, cadence, artifacts, risk log, milestones.</li>
+              <li><strong>Optional</strong>: a relevant anecdote slice + measurable result.</li>
+            </ol>
+          </details>
 
           <details open>
             <summary>ARR lever framing</summary>
-            <div class="copyWrap">
-              <button class="copyBtn" data-copy="#tmpl2">Copy</button>
-              <div id="tmpl2" class="muted">
-                <p><strong>Ending ARR</strong> = Beginning ARR + New ARR + Expanded ARR − Churned ARR − Contracted ARR</p>
-                <ul>
-                  <li>Increase <strong>New ARR</strong>: top-of-funnel, win rate, ACV</li>
-                  <li>Increase <strong>Expanded ARR</strong>: upsell/cross-sell, reduce contraction</li>
-                  <li>Decrease <strong>Churned ARR</strong>: support, UX, ease-of-use</li>
-                </ul>
-              </div>
+            <div class="muted">
+              <p><strong>Ending ARR</strong> = Beginning ARR + New ARR + Expanded ARR − Churned ARR − Contracted ARR</p>
+              <ul>
+                <li>Increase <strong>New ARR</strong>: top-of-funnel, win rate, ACV</li>
+                <li>Increase <strong>Expanded ARR</strong>: upsell/cross-sell, reduce contraction</li>
+                <li>Decrease <strong>Churned ARR</strong>: support, UX, ease-of-use</li>
+              </ul>
             </div>
           </details>
         </section>
 
-        <!-- CORE STRATEGIES -->
-        <section class="card" id="core-strategies" data-title="Core strategies" data-tags="0-100 scope plan execute buy-in empathize equip empower prioritize okrs qa comms root cause">
+        <section class="card" id="core-strategies" data-title="Core strategies" data-tags="0-100 buy-in prioritize okrs qa root cause">
           <h2>Core strategies</h2>
 
           <details open>
             <summary>0 → 100 (Scope → Plan → Execute → Scale)</summary>
-            <div class="copyWrap">
-              <button class="copyBtn" data-copy="#s0100">Copy</button>
-              <div id="s0100" class="muted">
-                <h3>Scoping / Discovery (5 questions)</h3>
-                <ul>
-                  <li>Where are we?</li>
-                  <li>Where do we want to go?</li>
-                  <li>Why do we want to go there?</li>
-                  <li>Who do we need to consult?</li>
-                  <li>What data do we have to inform us?</li>
-                </ul>
+            <div class="muted">
+              <h3>Scoping / Discovery (5 questions)</h3>
+              <ul>
+                <li>Where are we?</li>
+                <li>Where do we want to go?</li>
+                <li>Why do we want to go there?</li>
+                <li>Who do we need to consult?</li>
+                <li>What data do we have to inform us?</li>
+              </ul>
 
-                <h3>Planning</h3>
-                <ul>
-                  <li><strong>How do we get there?</strong> people, resources, money, time, target audience</li>
-                  <li><strong>How do we measure success?</strong> financial, efficiency, operational, quality</li>
-                </ul>
+              <h3>Planning</h3>
+              <ul>
+                <li><strong>How do we get there?</strong> people, resources, money, time, target audience</li>
+                <li><strong>How do we measure success?</strong> financial, efficiency, operational, quality</li>
+              </ul>
 
-                <h3>Execution</h3>
-                <ul>
-                  <li><strong>Kickoff:</strong> key contacts, vision, process, next steps, FAQs</li>
-                  <li><strong>Prioritize/conflict:</strong> empathize → OKRs → tradeoffs → 1-way vs 2-way door checkpoints</li>
-                  <li><strong>Accountability/QA:</strong> reporting cadence → reflect/correct/reward</li>
-                  <li><strong>Scale:</strong> documentation, enable people to teach, adjacent impact</li>
-                </ul>
-              </div>
+              <h3>Execution</h3>
+              <ul>
+                <li><strong>Kickoff:</strong> key contacts, vision, process, next steps, FAQs</li>
+                <li><strong>Prioritize/conflict:</strong> tradeoffs → 1-way vs 2-way door checkpoints</li>
+                <li><strong>Accountability/QA:</strong> reporting cadence → reflect/correct/reward</li>
+                <li><strong>Scale:</strong> documentation, enable people to teach, adjacent impact</li>
+              </ul>
             </div>
           </details>
 
           <details>
             <summary>Buy-in (Empathize → Equip → Empower)</summary>
-            <div class="copyWrap">
-              <button class="copyBtn" data-copy="#buyin">Copy</button>
-              <div id="buyin" class="muted">
-                <ul>
-                  <li><strong>Empathize:</strong> understand needs + why they should care</li>
-                  <li><strong>Equip:</strong> guidelines, trackers, feedback loops</li>
-                  <li><strong>Empower:</strong> affirm strengths, create safe space for growth</li>
-                  <li><strong>Data:</strong> make tradeoffs concrete; move with imperfect info</li>
-                </ul>
-              </div>
-            </div>
-          </details>
-
-          <details>
-            <summary>Quality assurance</summary>
-            <div class="muted">
-              <ul>
-                <li>Guidelines with SMEs; coordinate training</li>
-                <li><strong>Manual:</strong> sample reviews</li>
-                <li><strong>Automated:</strong> error dashboards + audits</li>
-                <li>Feedback loop + incentives</li>
-              </ul>
-              <p><strong>If quality drops:</strong> contain → root cause → update standards → retrain → automate checks → reinforce incentives</p>
-            </div>
+            <ul class="muted">
+              <li><strong>Empathize:</strong> understand needs + why they should care</li>
+              <li><strong>Equip:</strong> guidelines, trackers, feedback loops</li>
+              <li><strong>Empower:</strong> affirm strengths, create safe space for growth</li>
+              <li><strong>Data:</strong> make tradeoffs concrete; move with imperfect info</li>
+            </ul>
           </details>
         </section>
 
-        <!-- 90-DAY -->
-        <section class="card" id="90-day" data-title="90-day integration" data-tags="90 day plan 30 60 90 HR finance IT security ops product day 1 checklist">
+        <section class="card" id="90-day" data-title="90-day integration" data-tags="90 day plan 30 60 90">
           <h2>90-day integration</h2>
 
           <details open>
@@ -937,44 +855,9 @@
               <li>Measure success → iterate + incentivize</li>
             </ol>
           </details>
-
-          <details>
-            <summary>First 30 days (high signal)</summary>
-            <ul class="muted">
-              <li><strong>Finance:</strong> transfer bank account control + obtain closing balance sheet</li>
-              <li><strong>Legal:</strong> change of ownership paperwork</li>
-            </ul>
-          </details>
         </section>
 
-        <!-- METRICS -->
-        <section class="card" id="metrics" data-title="Metrics & OKRs" data-tags="metrics okrs 30 60 90 arr churn expanded new contracted synergy spend budget retention adoption quality">
-          <h2>Metrics & OKRs</h2>
-
-          <details open>
-            <summary>30/60/90 OKRs (examples)</summary>
-            <ul class="muted">
-              <li><strong>O:</strong> Seamless people integration with 0 pay disruption
-                <ul><li><strong>KR:</strong> 100% on-time W2 payroll / 1099 payouts first 2 cycles</li></ul>
-              </li>
-              <li><strong>O:</strong> Compliance up to standard
-                <ul>
-                  <li><strong>KR:</strong> 100% anti-harassment training by Day 45</li>
-                  <li><strong>KR:</strong> 95% other compliance by Day 30</li>
-                </ul>
-              </li>
-              <li><strong>O:</strong> Adoption of platform
-                <ul>
-                  <li><strong>KR:</strong> 80% CRM active users by Day 60</li>
-                  <li><strong>KR:</strong> 90% workflow error-free audits</li>
-                </ul>
-              </li>
-            </ul>
-          </details>
-        </section>
-
-        <!-- DD -->
-        <section class="card" id="dd" data-title="DD red flags" data-tags="due diligence red flags revenue churn security soc2 iso people attrition tenure discounting encryption backups incident response">
+        <section class="card" id="dd" data-title="DD red flags" data-tags="due diligence red flags churn security people">
           <h2>DD red flags</h2>
 
           <details open>
@@ -1008,38 +891,23 @@
           </details>
         </section>
 
-        <!-- DASHBOARDS -->
-        <section class="card" id="dashboards" data-title="Dashboards & governance" data-tags="dashboard scorecard rid log milestones risks issues decisions status updates workstreams cadence steerco pmo">
+        <section class="card" id="dashboards" data-title="Dashboards & governance" data-tags="dashboard rid milestones pmo steerco">
           <h2>Dashboards & governance</h2>
 
           <details open>
             <summary>Dashboard components</summary>
-            <div class="copyWrap">
-              <button class="copyBtn" data-copy="#dashlist">Copy</button>
-              <div id="dashlist" class="muted">
-                <ul>
-                  <li><strong>Exec status</strong> (top quant + qual) — weekly</li>
-                  <li><strong>RID log</strong> — ongoing</li>
-                  <li><strong>Milestones</strong> by workstream — ongoing</li>
-                  <li><strong>Key dates</strong> — ongoing</li>
-                  <li><strong>At-risk tasks</strong> — ongoing</li>
-                  <li><strong>Workstream P3</strong> (Progress/Problems/Plans) — weekly</li>
-                </ul>
-              </div>
-            </div>
-          </details>
-
-          <details>
-            <summary>Governance split</summary>
             <ul class="muted">
-              <li><strong>SteerCo:</strong> strategy + resources</li>
-              <li><strong>PMO:</strong> execution + cross-functional unblock</li>
+              <li><strong>Exec status</strong> — weekly</li>
+              <li><strong>RID log</strong> — ongoing</li>
+              <li><strong>Milestones</strong> by workstream — ongoing</li>
+              <li><strong>Key dates</strong> — ongoing</li>
+              <li><strong>At-risk tasks</strong> — ongoing</li>
+              <li><strong>Workstream P3</strong> (Progress/Problems/Plans) — weekly</li>
             </ul>
           </details>
         </section>
 
-        <!-- PHASES -->
-        <section class="card" id="phases" data-title="Phases & timeline" data-tags="phases timeline plan prep discovery functional integration systems integration product integration lead to cash crm erp hris">
+        <section class="card" id="phases" data-title="Phases & timeline" data-tags="phases timeline crm erp hris lead-to-cash">
           <h2>Phases & timeline</h2>
 
           <details open>
@@ -1047,14 +915,13 @@
             <ul class="muted">
               <li><strong>HRIS</strong> migration</li>
               <li><strong>ERP</strong> migration</li>
-              <li><strong>CRM</strong> migration: account/SKU/contracts/contacts/tickets</li>
-              <li><strong>Lead-to-cash</strong>: lead→opp→quote→order→cash→delivery</li>
+              <li><strong>CRM</strong> migration</li>
+              <li><strong>Lead-to-cash</strong> handoffs</li>
             </ul>
           </details>
         </section>
 
-        <!-- ANECDOTES -->
-        <section class="card" id="anecdotes" data-title="Anecdote bank" data-tags="anecdotes netwrix tilly pingcastle crm lead to cash synergy tracker lag reduction recruiting">
+        <section class="card" id="anecdotes" data-title="Anecdote bank" data-tags="anecdotes crm lead-to-cash synergy lag reduction">
           <h2>Anecdote bank</h2>
 
           <details open>
@@ -1094,28 +961,8 @@
           </details>
         </section>
 
-        <!-- QUESTIONS TO ASK -->
-        <section class="card" id="reverse-questions" data-title="Questions to ask them" data-tags="questions ask them decision timeline interview stages hiring budget strategy headaches integration">
-          <h2>Questions to ask them</h2>
-
-          <div class="copyWrap">
-            <button class="copyBtn" data-copy="#qs">Copy</button>
-            <div id="qs" class="muted">
-              <ol>
-                <li>What’s your decision timeline?</li>
-                <li>Why are you hiring for this now — and is there budget for multiple hires?</li>
-                <li>What’s the biggest headache you want this role to solve? (3 wishes?)</li>
-                <li>How is success defined here (metrics + soft skills)?</li>
-                <li>Anything unique about your integration strategy I should know?</li>
-              </ol>
-            </div>
-          </div>
-        </section>
-
-        <!-- SQL -->
-        <section class="card" id="sql" data-title="SQL quick recall" data-tags="sql aggregation sum count avg case when error rates performance over time">
+        <section class="card" id="sql" data-title="SQL quick recall" data-tags="sql aggregation case when">
           <h2>SQL quick recall</h2>
-
           <details open>
             <summary>What to emphasize</summary>
             <ul class="muted">
@@ -1125,10 +972,9 @@
           </details>
         </section>
 
-        <!-- COMPANY ACQUISITIONS NOTES (BLANK, SAVES LOCALLY) -->
-        <section class="card" id="company-notes" data-title="Company acquisitions notes" data-tags="company notes recent acquisitions research strategy interview">
+        <section class="card" id="company-notes" data-title="Company acquisitions notes" data-tags="company notes recent acquisitions research">
           <h2>Company acquisitions notes</h2>
-          <p class="muted">Fill this in for the company you’re interviewing with. This autosaves on your computer (localStorage).</p>
+          <p class="muted">Fill this in for the company you’re interviewing with. This autosaves on your computer.</p>
 
           <div class="grid2">
             <div>
@@ -1142,10 +988,10 @@
           </div>
 
           <div class="label">Recent acquisitions (paste bullets)</div>
-          <textarea class="textarea" id="cn_acquisitions" placeholder="• Company • Date • Why they acquired (guess) • Notes&#10;• …"></textarea>
+          <textarea class="textarea" id="cn_acquisitions" placeholder="• Company • Date • Why they acquired • Notes&#10;• …"></textarea>
 
           <div class="label">What this implies for integration (your POV)</div>
-          <textarea class="textarea" id="cn_implications" placeholder="What workstreams will be hardest? What will leadership care about? What risks show up?"></textarea>
+          <textarea class="textarea" id="cn_implications" placeholder="Hard workstreams? What will leadership care about? Risks?"></textarea>
 
           <div class="label">Smart questions to ask them (based on their acquisitions)</div>
           <textarea class="textarea" id="cn_questions" placeholder="1) …&#10;2) …&#10;3) …"></textarea>
@@ -1158,7 +1004,7 @@
     </div>
 
     <footer class="small">
-      Tip: press <span class="kbd">/</span> to search • <span class="kbd">Cmd/Ctrl K</span> to jump • <span class="kbd">?</span> for help
+      Tip: <span class="kbd">/</span> search • <span class="kbd">Cmd/Ctrl K</span> jump • <span class="kbd">?</span> help
     </footer>
   </div>
 
@@ -1186,7 +1032,7 @@
       <div class="modalHeader">
         <div>
           <div id="helpTitle" class="heading" style="font-size:32px; font-weight:900;">Help</div>
-          <div class="small muted">Tiny cheat sheet so it’s not confusing.</div>
+          <div class="small muted">Simple + fast.</div>
         </div>
         <button class="btn secondary" id="closeHelpBtn">Close</button>
       </div>
@@ -1194,40 +1040,40 @@
       <div class="card" style="margin-top:12px;">
         <h3>3 ways to find things</h3>
         <ol class="muted">
-          <li><strong>Search:</strong> press <span class="kbd">/</span>, type a keyword, results filter instantly.</li>
+          <li><strong>Search:</strong> press <span class="kbd">/</span>, type a keyword. The page filters instantly.</li>
           <li><strong>Jump menu:</strong> press <span class="kbd">Cmd/Ctrl K</span>, type, press Enter.</li>
-          <li><strong>Q bank:</strong> go to “Q → best answer”, pick <span class="kbd">30s</span> or <span class="kbd">60s</span>, then <strong>Copy</strong>.</li>
+          <li><strong>Q bank:</strong> go to “Q → best snippet”, choose <span class="kbd">30s</span> or <span class="kbd">60s</span>, and speak it.</li>
         </ol>
       </div>
 
-      <div class="grid2" style="margin-top:12px;">
-        <div class="card">
-          <h3>Shortcuts</h3>
-          <ul class="muted">
-            <li><span class="kbd">/</span> focus search</li>
-            <li><span class="kbd">Cmd/Ctrl K</span> open jump menu</li>
-            <li><span class="kbd">?</span> open help</li>
-            <li><span class="kbd">Esc</span> close any popup</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Best “panic flow”</h3>
-          <ol class="muted">
-            <li>Press <span class="kbd">Cmd/Ctrl K</span></li>
-            <li>Type the question keyword (“CRM”, “prioritize”, “DD”)</li>
-            <li>Enter → you land in Q bank</li>
-            <li>Click <strong>Copy</strong> (30s) and speak it</li>
-          </ol>
-        </div>
-      </div>
-
-      <div class="small muted" style="margin-top:12px;">
-        Tip: “Expand all” opens/closes every accordion at once.
+      <div class="card" style="margin-top:12px;">
+        <h3>Shortcuts</h3>
+        <ul class="muted">
+          <li><span class="kbd">/</span> focus search</li>
+          <li><span class="kbd">Cmd/Ctrl K</span> open jump menu</li>
+          <li><span class="kbd">?</span> open help</li>
+          <li><span class="kbd">Esc</span> close any popup</li>
+        </ul>
       </div>
     </div>
   </div>
 
   <script>
+    /***********************
+     * Search placeholder (responsive so it never “cuts off”)
+     ***********************/
+    const searchEl = document.getElementById("search");
+    function setSearchPlaceholder(){
+      const long = "Search everything… ( / )   •   Jump: Cmd/Ctrl+K   •   Help: ?";
+      const short = "Search… ( / )   •   Cmd/Ctrl+K";
+      // Use long when there's enough width
+      if (!searchEl) return;
+      const w = searchEl.getBoundingClientRect().width;
+      searchEl.placeholder = (w >= 520) ? long : short;
+    }
+    window.addEventListener("resize", () => setSearchPlaceholder());
+    setTimeout(setSearchPlaceholder, 0);
+
     /***********************
      * Local-only soft lock
      ***********************/
@@ -1289,14 +1135,12 @@
     passInput.addEventListener("keydown", (e) => { if (e.key === "Enter") tryUnlock(false); });
 
     /***********************
-     * Core DOM (sections/TOC)
+     * Sections + TOC
      ***********************/
     const tocEl = document.getElementById("toc");
-    const searchEl = document.getElementById("search");
     const expandAllBtn = document.getElementById("expandAllBtn");
     const sections = Array.from(document.querySelectorAll("main section[data-title]"));
 
-    // Store original HTML for everything EXCEPT qbank (qbank is dynamic)
     sections.forEach(s => {
       if (s.id !== "qbank") s.dataset.orig = s.innerHTML;
     });
@@ -1339,55 +1183,7 @@
       { label:"DD red flags", id:"dd" },
       { label:"Company notes", id:"company-notes" },
     ];
-    quick.forEach(item => {
-      const b = document.createElement("button");
-      b.className = "pill";
-      b.type = "button";
-      b.textContent = item.label;
-      b.addEventListener("click", () => jumpTo(item.id));
-      pillsEl.appendChild(b);
-    });
 
-    /***********************
-     * Copy buttons (static)
-     ***********************/
-    async function copyTextWithToast(btn, text){
-      try{
-        await navigator.clipboard.writeText(text);
-        const old = btn.textContent;
-        btn.textContent = "Copied!";
-        setTimeout(() => btn.textContent = old, 900);
-      }catch(e){
-        alert("Copy failed (browser permission).");
-      }
-    }
-
-    function wireCopyButtons(){
-      document.querySelectorAll(".copyBtn[data-copy]").forEach(btn => {
-        btn.addEventListener("click", async () => {
-          const sel = btn.getAttribute("data-copy");
-          const node = document.querySelector(sel);
-          if (!node) return;
-          await copyTextWithToast(btn, node.innerText.trim());
-        });
-      });
-    }
-    wireCopyButtons();
-
-    /***********************
-     * Expand/collapse all details
-     ***********************/
-    let expanded = true;
-    expandAllBtn.addEventListener("click", () => {
-      const all = Array.from(document.querySelectorAll("main details"));
-      expanded = !expanded;
-      all.forEach(d => d.open = expanded);
-      expandAllBtn.textContent = expanded ? "Collapse all" : "Expand all";
-    });
-
-    /***********************
-     * Flash + Jump
-     ***********************/
     function flash(el){
       if (!el) return;
       el.classList.remove("flash");
@@ -1404,8 +1200,28 @@
       setTimeout(updateActiveToc, 120);
     }
 
+    quick.forEach(item => {
+      const b = document.createElement("button");
+      b.className = "pill";
+      b.type = "button";
+      b.textContent = item.label;
+      b.addEventListener("click", () => jumpTo(item.id));
+      pillsEl.appendChild(b);
+    });
+
     /***********************
-     * Q Bank data (30s + 60s + anecdote)
+     * Expand/collapse all details
+     ***********************/
+    let expanded = true;
+    expandAllBtn.addEventListener("click", () => {
+      const all = Array.from(document.querySelectorAll("main details"));
+      expanded = !expanded;
+      all.forEach(d => d.open = expanded);
+      expandAllBtn.textContent = expanded ? "Collapse all" : "Expand all";
+    });
+
+    /***********************
+     * Q Bank
      ***********************/
     const QUESTIONS = [
       {
@@ -1488,14 +1304,9 @@
       },
     ];
 
-    function getQEls(){
-      return {
-        qSearch: document.getElementById("qSearch"),
-        qList: document.getElementById("qList"),
-        qShowAllBtn: document.getElementById("qShowAllBtn"),
-        qCopyFirstBtn: document.getElementById("qCopyFirstBtn"),
-      };
-    }
+    const qSearchEl = document.getElementById("qSearch");
+    const qListEl = document.getElementById("qList");
+    const qShowAllBtn = document.getElementById("qShowAllBtn");
 
     function qMatches(item, f){
       if (!f) return true;
@@ -1505,16 +1316,13 @@
     }
 
     function renderQuestions(filter=""){
-      const { qList } = getQEls();
-      if (!qList) return 0;
-
       const f = (filter || "").trim().toLowerCase();
-      qList.innerHTML = "";
+      qListEl.innerHTML = "";
 
       const visible = QUESTIONS.filter(item => qMatches(item, f));
       if (!visible.length){
-        qList.innerHTML = `<div class="small muted">No matches. Try “CRM”, “prioritize”, “90-day”.</div>`;
-        return 0;
+        qListEl.innerHTML = `<div class="small muted">No matches. Try “CRM”, “prioritize”, “90-day”.</div>`;
+        return;
       }
 
       visible.forEach(item => {
@@ -1528,19 +1336,15 @@
         const anecHtml = item.anecdote ? `
           <div class="anec">
             <div class="anecHead">
-              <div class="anecTitle">Best anecdote slice:</div>
+              <div class="anecTitle">Anecdote slice:</div>
               <div class="anecNote">${item.anecdote.label}</div>
             </div>
             <ul class="muted">${item.anecdote.slice.map(s => `<li>${s}</li>`).join("")}</ul>
-            <div class="qBtns" style="margin-top:10px; justify-content:flex-start;">
-              <button class="qBtnMini" data-action="jumpAnecdote">Jump anecdote</button>
-              <button class="qBtnMini primary" data-action="copyAnecdote">Copy slice</button>
-            </div>
           </div>
         ` : `
           <div class="anec">
             <div class="anecHead">
-              <div class="anecTitle">Best anecdote slice:</div>
+              <div class="anecTitle">Anecdote slice:</div>
               <div class="anecNote">Optional — answer cleanly unless they ask “tell me more.”</div>
             </div>
           </div>
@@ -1556,24 +1360,21 @@
             <div class="qBtns">
               <button class="qBtnMini modeActive" data-action="mode30" aria-pressed="true">30s</button>
               <button class="qBtnMini" data-action="mode60" aria-pressed="false">60s</button>
-              <button class="qBtnMini primary" data-action="copy">Copy</button>
               <button class="qBtnMini" data-action="jump">Jump</button>
             </div>
           </div>
 
           <div class="qSnippet">
-            <details>
-              <summary>Show the answer</summary>
+            <details open>
+              <summary>Answer</summary>
               <ul class="qAnswer muted">${item.a30.map(line => `<li>${line}</li>`).join("")}</ul>
-              <p class="small muted">If they ask “tell me more,” add the anecdote slice (don’t front-load it).</p>
+              <p class="small muted">If they ask “tell me more,” switch to 60s or use the anecdote slice below.</p>
             </details>
             ${anecHtml}
           </div>
         `;
-        qList.appendChild(el);
+        qListEl.appendChild(el);
       });
-
-      return visible.length;
     }
 
     function getQuestionById(qid){ return QUESTIONS.find(q => q.id === qid); }
@@ -1583,7 +1384,6 @@
       if (!q) return;
 
       itemEl.setAttribute("data-mode", mode);
-
       const btn30 = itemEl.querySelector('button[data-action="mode30"]');
       const btn60 = itemEl.querySelector('button[data-action="mode60"]');
       const is30 = mode === "30";
@@ -1597,75 +1397,26 @@
       if (ul) ul.innerHTML = lines.map(line => `<li>${line}</li>`).join("");
     }
 
-    function getActiveAnswerText(itemEl){
-      const q = getQuestionById(itemEl.getAttribute("data-qid"));
-      if (!q) return "";
-      const mode = itemEl.getAttribute("data-mode") || "30";
-      const lines = (mode === "60" ? q.a60 : q.a30);
-      return lines.join("\n");
-    }
+    qListEl.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-action]");
+      if (!btn) return;
+      const itemEl = e.target.closest(".qItem");
+      if (!itemEl) return;
 
-    function getAnecdoteText(itemEl){
-      const q = getQuestionById(itemEl.getAttribute("data-qid"));
-      if (!q || !q.anecdote) return "";
-      return ["Anecdote: " + q.anecdote.label, ...q.anecdote.slice.map(s => "- " + s)].join("\n");
-    }
+      const action = btn.getAttribute("data-action");
+      if (action === "mode30") setMode(itemEl, "30");
+      if (action === "mode60") setMode(itemEl, "60");
+      if (action === "jump"){
+        const jumpId = itemEl.getAttribute("data-jump");
+        jumpTo(jumpId);
+        setTimeout(() => document.getElementById(jumpId)?.querySelector("details")?.setAttribute("open",""), 220);
+      }
+    });
 
-    function jumpToHash(anchorId){
-      const target = document.getElementById(anchorId);
-      if (!target) return;
-      target.scrollIntoView({ behavior:"smooth", block:"start" });
-      flash(target.closest(".card") || target);
-      setTimeout(updateActiveToc, 120);
-    }
-
-    function wireQuestionBank(){
-      const { qList, qSearch, qShowAllBtn, qCopyFirstBtn } = getQEls();
-      if (!qList || !qSearch) return;
-
-      qList.onclick = async (e) => {
-        const btn = e.target.closest("button[data-action]");
-        if (!btn) return;
-        const itemEl = e.target.closest(".qItem");
-        if (!itemEl) return;
-
-        const action = btn.getAttribute("data-action");
-
-        if (action === "mode30") setMode(itemEl, "30");
-        if (action === "mode60") setMode(itemEl, "60");
-
-        if (action === "copy") await copyTextWithToast(btn, getActiveAnswerText(itemEl));
-        if (action === "jump"){
-          const jumpId = itemEl.getAttribute("data-jump");
-          jumpTo(jumpId);
-          setTimeout(() => document.getElementById(jumpId)?.querySelector("details")?.setAttribute("open",""), 220);
-        }
-
-        if (action === "copyAnecdote") await copyTextWithToast(btn, getAnecdoteText(itemEl));
-        if (action === "jumpAnecdote"){
-          jumpTo("anecdotes");
-          setTimeout(() => jumpToHash(getQuestionById(itemEl.getAttribute("data-qid"))?.anecdote?.jump || ""), 250);
-        }
-      };
-
-      qShowAllBtn?.addEventListener("click", () => { qSearch.value=""; renderQuestions(""); });
-      qCopyFirstBtn?.addEventListener("click", async () => {
-        const first = qList.querySelector(".qItem");
-        if (!first) return;
-        await copyTextWithToast(qCopyFirstBtn, getActiveAnswerText(first));
-      });
-
-      qSearch.addEventListener("input", () => renderQuestions(qSearch.value));
-      qSearch.addEventListener("keydown", (e) => {
-        if (e.key === "Enter"){
-          const first = qList.querySelector(".qItem");
-          if (first){ first.scrollIntoView({ behavior:"smooth", block:"center" }); flash(first); }
-        }
-      });
-    }
+    qSearchEl.addEventListener("input", () => renderQuestions(qSearchEl.value));
+    qShowAllBtn.addEventListener("click", () => { qSearchEl.value = ""; renderQuestions(""); });
 
     renderQuestions("");
-    wireQuestionBank();
 
     /***********************
      * Company notes (autosave)
@@ -1685,43 +1436,35 @@
         const raw = localStorage.getItem(CN_KEY);
         if (!raw) return;
         const data = JSON.parse(raw);
-        if (cn.company) cn.company.value = data.company || "";
-        if (cn.role) cn.role.value = data.role || "";
-        if (cn.acquisitions) cn.acquisitions.value = data.acquisitions || "";
-        if (cn.implications) cn.implications.value = data.implications || "";
-        if (cn.questions) cn.questions.value = data.questions || "";
+        cn.company.value = data.company || "";
+        cn.role.value = data.role || "";
+        cn.acquisitions.value = data.acquisitions || "";
+        cn.implications.value = data.implications || "";
+        cn.questions.value = data.questions || "";
       }catch(_){}
     }
-
     function saveCompanyNotes(){
       const data = {
-        company: cn.company?.value || "",
-        role: cn.role?.value || "",
-        acquisitions: cn.acquisitions?.value || "",
-        implications: cn.implications?.value || "",
-        questions: cn.questions?.value || "",
+        company: cn.company.value || "",
+        role: cn.role.value || "",
+        acquisitions: cn.acquisitions.value || "",
+        implications: cn.implications.value || "",
+        questions: cn.questions.value || "",
       };
       localStorage.setItem(CN_KEY, JSON.stringify(data));
     }
-
-    function wireCompanyNotes(){
-      [cn.company, cn.role, cn.acquisitions, cn.implications, cn.questions].forEach(el => {
-        if (!el) return;
-        el.addEventListener("input", () => saveCompanyNotes());
-      });
-
-      cn.clear?.addEventListener("click", () => {
-        if (cn.company) cn.company.value = "";
-        if (cn.role) cn.role.value = "";
-        if (cn.acquisitions) cn.acquisitions.value = "";
-        if (cn.implications) cn.implications.value = "";
-        if (cn.questions) cn.questions.value = "";
-        saveCompanyNotes();
-      });
-    }
-
+    [cn.company, cn.role, cn.acquisitions, cn.implications, cn.questions].forEach(el => {
+      el.addEventListener("input", saveCompanyNotes);
+    });
+    cn.clear.addEventListener("click", () => {
+      cn.company.value = "";
+      cn.role.value = "";
+      cn.acquisitions.value = "";
+      cn.implications.value = "";
+      cn.questions.value = "";
+      saveCompanyNotes();
+    });
     loadCompanyNotes();
-    wireCompanyNotes();
 
     /***********************
      * Global search highlight + filter
@@ -1772,24 +1515,18 @@
           s.style.display = "";
           if (s.id !== "qbank" && s.dataset.orig) s.innerHTML = s.dataset.orig;
         });
-        wireCopyButtons();
-        loadCompanyNotes(); // restore notes after reset
-        wireCompanyNotes();
-        renderQuestions(document.getElementById("qSearch")?.value || "");
-        wireQuestionBank();
+        loadCompanyNotes();
+        renderQuestions(qSearchEl.value || "");
         return;
       }
 
-      // Pipe into Q filter too
-      const qSearch = document.getElementById("qSearch");
-      if (qSearch){
-        qSearch.value = q;
-        renderQuestions(q);
-      }
+      // Pipe query into Q filter (keeps Q bank useful)
+      qSearchEl.value = q;
+      renderQuestions(q);
 
       const re = new RegExp(escapeRegExp(q), "ig");
       sections.forEach(s => {
-        if (s.id === "qbank") return; // keep Q bank visible for fast use
+        if (s.id === "qbank") return; // keep Q bank visible
         const hay = (s.textContent || "").toLowerCase();
         const ok = hay.includes(q.toLowerCase());
         s.style.display = ok ? "" : "none";
@@ -1799,10 +1536,7 @@
         }
       });
 
-      wireCopyButtons();
       loadCompanyNotes();
-      wireCompanyNotes();
-      wireQuestionBank();
     }
 
     searchEl.addEventListener("input", runGlobalSearch);
@@ -1904,7 +1638,6 @@
      * Help modal
      ***********************/
     const helpModal = document.getElementById("helpModal");
-    const helpBtn = document.getElementById("helpBtn");
     const helpFab = document.getElementById("helpFab");
     const closeHelpBtn = document.getElementById("closeHelpBtn");
 
@@ -1918,7 +1651,6 @@
       searchEl.focus();
     }
 
-    helpBtn.addEventListener("click", openHelp);
     helpFab.addEventListener("click", openHelp);
     closeHelpBtn.addEventListener("click", closeHelp);
     helpModal.addEventListener("click", (e) => { if (e.target === helpModal) closeHelp(); });
